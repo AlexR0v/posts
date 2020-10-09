@@ -1,0 +1,29 @@
+{
+  "name": "merng",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "lint": "mctl lint",
+    "test": "mctl test",
+    "commit": "mctl commit",
+    "format": "mctl format",
+    "typecheck": "mctl typecheck",
+    "checkcommit": "mctl precommit",
+    "server:dev": "yarn workspace @merng/app run dev"
+  },
+  "workspaces": [
+    "frontend/**/*",
+    "backend/**/*"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "mctl precommit",
+      "commit-msg": "mctl commitmsg"
+    }
+  },
+  "devDependencies": {
+    "@monstrs/mctl": "^0.1.82",
+    "husky": "^4.3.0",
+    "lerna": "^3.22.1"
+  }
+}
