@@ -1,11 +1,11 @@
 {
   "name": "@merng/utils",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "main": "src/index.js",
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "jsonwebtoken": "^8.5.1",
-    "apollo-server": "^2.18.2"
+    "apollo-server": "^2.18.2",
+    "jsonwebtoken": "^8.5.1"
   }
 }
