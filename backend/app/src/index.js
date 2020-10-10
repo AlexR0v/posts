@@ -1,14 +1,16 @@
-const { ApolloServer } = require('apollo-server')
+const { ApolloServer, PubSub } = require('apollo-server')
 const mongoose = require('mongoose')
 
 const resolvers = require('@merng/resolvers')
 const typeDefs = require('./typeDefs')
 const { MONGODB } = require('../config')
 
+const pubsub = new PubSub()
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
-  context: ({ req }) => ({ req })
+  context: ({ req }) => ({ req, pubsub }),
 })
 
 mongoose

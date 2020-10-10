@@ -5,5 +5,5 @@ const { checkAuth } = require('./check-auth')
 module.exports = {
   validateRegisterInput,
   validateLoginInput,
-  checkAuth
+  checkAuth,
 }
