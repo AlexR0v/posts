@@ -10,7 +10,8 @@
     "typecheck": "mctl typecheck",
     "checkcommit": "mctl precommit",
     "server:dev": "yarn workspace @merng/app run dev",
-    "server": "yarn workspace @merng/app run start"
+    "server": "yarn workspace @merng/app run start",
+    "dev": "yarn workspace @posts/app run dev"
   },
   "workspaces": [
     "frontend/**/*",
