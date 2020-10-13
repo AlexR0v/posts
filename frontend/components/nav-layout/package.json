@@ -3,7 +3,6 @@
   "version": "0.1.0",
   "main": "src/index.tsx",
   "license": "MIT",
-  "private": true,
   "dependencies": {
     "@atlantis-lab/layout": "^0.3.0",
     "@ui/link": "0.1.0",
