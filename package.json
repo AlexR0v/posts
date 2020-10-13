@@ -9,9 +9,11 @@
     "format": "mctl format",
     "typecheck": "mctl typecheck",
     "checkcommit": "mctl precommit",
+    "new-version": "lerna version --conventional-commits --yes",
     "server:dev": "yarn workspace @merng/app run dev",
     "server": "yarn workspace @merng/app run start",
-    "dev": "yarn workspace @posts/app run dev"
+    "dev": "yarn workspace @posts/app run dev",
+    "start": " lerna run start --scope={@merng/app,@posts/app}"
   },
   "workspaces": [
     "frontend/**/*",
