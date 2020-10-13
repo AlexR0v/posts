@@ -1,0 +1,12 @@
+{
+  "name": "@components/login-page",
+  "version": "0.0.0",
+  "main": "src/index.tsx",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@components/nav-layout": "0.1.0",
+    "react": "16.13.1",
+    "@ui/text": "0.1.0"
+  }
+}
