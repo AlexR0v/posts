@@ -4,11 +4,11 @@ import { NavLayout } from '@components/nav-layout'
 
 import { Text }      from '../../../ui/text'
 
-export const IndexPage = () => {
+export const RegisterPage = () => {
   return (
     <NavLayout>
       <Text as='h1' fontSize={['xmedium', 'semiLarge', 'large']}>
-        Home
+        Register
       </Text>
     </NavLayout>
   )
