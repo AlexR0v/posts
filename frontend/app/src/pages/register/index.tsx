@@ -1,1 +1,1 @@
-export { default } from '@components/register-page'
+export { default } from '@site/register-page'

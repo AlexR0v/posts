@@ -8,7 +8,7 @@
     "@ui/text": "0.1.0",
     "@ui/theme": "0.1.0",
     "next": "^9.5.3",
-    "react": "^16.13.1",
+    "react": "16.13.1",
     "styled-system": "^5.1.5",
     "styled-tools": "^1.7.2"
   }

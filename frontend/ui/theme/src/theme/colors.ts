@@ -1,8 +1,8 @@
 export const colors = {
-  someColor: '#33c435',
-  semiBlack: '#262626',
-  blue: '#3ba1e5',
-  white: '#fff',
-  clickedColor: '#7c3be5',
-  activeLink: '#e9f53d',
+  semiBlack: 'hsl(0, 0%, 15%)',
+  blue: 'hsl(204, 77%, 56%)',
+  white: 'hsl(0, 0%, 100%)',
+  clickedColor: 'hsl(263, 77%, 56%)',
+  activeLink: 'hsl(64, 90%, 60%)',
+  gray: 'hsl(0, 0%, 70%)',
 }

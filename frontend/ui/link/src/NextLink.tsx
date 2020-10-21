@@ -1,6 +1,6 @@
 import Link                          from 'next/link'
 import styled                        from '@emotion/styled'
-import React, { useState }           from 'react'
+import React, { FC, useState }       from 'react'
 import { color, layout, typography } from 'styled-system'
 import { ifProp }                    from 'styled-tools'
 
@@ -55,27 +55,37 @@ export const LinkStyled = styled(Text.withComponent('a'))<any>(
   typography
 )
 
-export const NextLink: any = ({
+interface NextLinkProps {
+  active?: boolean
+  path?: string
+  underlineColor?: string
+  underline?: any
+  clickedColor?: string
+  href?: string
+  color?: string
+  children?: any
+  fontFamily?: string | string[]
+  activeColor?: string
+}
+
+export const NextLink: FC<NextLinkProps> = ({
   active,
   path,
   underlineColor,
   underline,
-  hoverColor,
   clickedColor,
   href,
   children,
   ...props
-}) => {
+}: NextLinkProps) => {
   const [hovered, setHovered] = useState(false)
   const [clicked, setClicked] = useState(false)
   return (
     <Link href={{ pathname: href }}>
       <LinkStyled
         active={active}
-        /* eslint-disable no-nested-ternary */
-        color={clicked ? clickedColor || color : hovered ? hoverColor || color : color}
         underlineColor={underlineColor}
-        underline={underline && hovered && ((!clicked && clickedColor) || !clickedColor)}
+        underline={underline && hovered && !clicked}
         onMouseOver={() => setHovered(true)}
         onFocus={() => setHovered(true)}
         onMouseLeave={() => {

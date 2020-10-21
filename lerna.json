@@ -1,6 +1,6 @@
 {
   "packages": ["frontend/**/*", "backend/**/*"],
-  "npmClient": "yarn",
+  "npmClient": "npm",
   "useWorkspaces": true,
   "version": "independent",
   "command": {

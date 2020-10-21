@@ -1,8 +1,8 @@
 import React                from 'react'
-import { Box, Column, Row } from '@atlantis-lab/layout'
 import { useRouter }        from 'next/router'
 import { injectIntl }       from 'react-intl'
 
+import { Box, Column, Row } from '@ui/layout'
 import { NextLink }         from '@ui/link'
 import { Text }             from '@ui/text'
 
@@ -12,59 +12,61 @@ const NavLayout = ({ children, intl }) => {
   const router = useRouter()
   return (
     <>
-      <Column as='header' alignItems='center'>
-        <Box height={['40px', '50px', '70px']} width={['375px', '768px', '1440px']} bg='blue'>
-          <Row as='nav' alignItems='center' justifyContent='space-evenly'>
-            <NextLink
-              underline
-              color='white'
-              href='/'
-              active={router.pathname === '/'}
-              activeColor='clickedColor'
-            >
-              <Text
-                textTransform='uppercase'
+      <Box bg='blue'>
+        <Column as='header' alignItems='center'>
+          <Box height={[40, 50, 70]} maxWidth={[375, 768, 1440]} width='100%'>
+            <Row as='nav' alignItems='center' justifyContent='space-evenly'>
+              <NextLink
+                underline
                 color='white'
-                fontSize={['semiMedium', 'default', 'xlMedium']}
+                href='/'
+                active={router.pathname === '/'}
+                activeColor='activeLink'
               >
-                {intl.formatMessage(messages.homeLink)}
-              </Text>
-            </NextLink>
+                <Text
+                  textTransform='uppercase'
+                  color='white'
+                  fontSize={['semiMedium', 'default', 'xlMedium']}
+                >
+                  {intl.formatMessage(messages.homeLink)}
+                </Text>
+              </NextLink>
 
-            <NextLink
-              underline
-              color='white'
-              href='/login'
-              active={router.pathname === '/login'}
-              activeColor='clickedColor'
-            >
-              <Text
-                textTransform='uppercase'
+              <NextLink
+                underline
                 color='white'
-                fontSize={['semiMedium', 'default', 'xlMedium']}
+                href='/login'
+                active={router.pathname === '/login'}
+                activeColor='activeLink'
               >
-                {intl.formatMessage(messages.loginLink)}
-              </Text>
-            </NextLink>
+                <Text
+                  textTransform='uppercase'
+                  color='white'
+                  fontSize={['semiMedium', 'default', 'xlMedium']}
+                >
+                  {intl.formatMessage(messages.loginLink)}
+                </Text>
+              </NextLink>
 
-            <NextLink
-              underline
-              color='white'
-              href='/register'
-              active={router.pathname === '/register'}
-              activeColor='clickedColor'
-            >
-              <Text
-                textTransform='uppercase'
+              <NextLink
+                underline
                 color='white'
-                fontSize={['semiMedium', 'default', 'xlMedium']}
+                href='/register'
+                active={router.pathname === '/register'}
+                activeColor='activeLink'
               >
-                {intl.formatMessage(messages.registerLink)}
-              </Text>
-            </NextLink>
-          </Row>
-        </Box>
-      </Column>
+                <Text
+                  textTransform='uppercase'
+                  color='white'
+                  fontSize={['semiMedium', 'default', 'xlMedium']}
+                >
+                  {intl.formatMessage(messages.registerLink)}
+                </Text>
+              </NextLink>
+            </Row>
+          </Box>
+        </Column>
+      </Box>
       {children}
     </>
   )
