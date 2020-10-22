@@ -11,6 +11,8 @@
     "@apollo/react-hooks": "^4.0.0",
     "graphql-tag": "^2.11.0",
     "react-intl": "^5.0.2",
-    "@ui/loader": "0.0.0"
+    "@ui/loader": "0.0.0",
+    "@ui/icons": "0.0.0",
+    "@components/post-card": "0.0.0"
   }
 }

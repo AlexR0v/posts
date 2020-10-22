@@ -5,4 +5,5 @@ export const colors = {
   clickedColor: 'hsl(263, 77%, 56%)',
   activeLink: 'hsl(64, 90%, 60%)',
   gray: 'hsl(0, 0%, 70%)',
+  red: 'hsl(0, 100%, 50%)',
 }

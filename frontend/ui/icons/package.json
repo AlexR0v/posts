@@ -1,0 +1,9 @@
+{
+  "name": "@ui/icons",
+  "version": "0.0.0",
+  "main": "src/index.ts",
+  "license": "MIT",
+  "dependencies": {
+    "react": "16.13.1"
+  }
+}

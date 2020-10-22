@@ -2,6 +2,7 @@ import React                        from 'react'
 import { useIntl }                  from 'react-intl'
 
 import { NavLayout }                from '@components/nav-layout'
+import { PostCard }                 from '@components/post-card'
 import { Box, Column, Layout, Row } from '@ui/layout'
 import { Loader }                   from '@ui/loader'
 import { Text }                     from '@ui/text'
@@ -37,41 +38,9 @@ const IndexPage = () => {
           >
             <Layout flexBasis={[0, 0, 50]} />
             {postsData.map(post => {
-              console.log(post)
               return (
                 <React.Fragment key={post.id}>
-                  <Box
-                    width={[290]}
-                    height={[170]}
-                    p='semiLarge'
-                    borderRadius='small'
-                    border='gray'
-                  >
-                    <Column alignItems='center'>
-                      <Row justifyContent='space-between' alignItems='center'>
-                        <Text fontSize='default' fontWeight='semiBold'>
-                          {post.username}
-                        </Text>
-                        <Box width={35} height={35} border='gray' />
-                      </Row>
-                      <Layout flexBasis={10} />
-                      <Box width='100%' height={1} border='gray' />
-                      <Row justifyContent='flex-end'>
-                        <Text
-                          color='gray'
-                          fontWeight='tiny'
-                          fontSize='semiMedium'
-                          lineHeight='small'
-                        >
-                          {post.createdAt}
-                        </Text>
-                      </Row>
-                      <Layout flexBasis={16} />
-                      <Text fontSize='semiMedium' fontWeight='normal'>
-                        {post.body}
-                      </Text>
-                    </Column>
-                  </Box>
+                  <PostCard post={post} />
                   <Layout flexBasis={[20, 30, 50]} />
                 </React.Fragment>
               )

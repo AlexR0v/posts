@@ -25,7 +25,7 @@ export default class App extends NextApp {
     const { Component, pageProps } = this.props
     return (
       <>
-        <IntlProvider locale='en'>
+        <IntlProvider locale='ru' defaultLocale='ru'>
           <ThemeProvider theme={theme}>
             <Seo />
             <ApolloProvider client={client}>
