@@ -31,7 +31,8 @@
     "react-helmet": "^6.1.0",
     "react-intl": "^5.0.2",
     "styled-system": "^5.1.5",
-    "styled-tools": "^1.7.2"
+    "styled-tools": "^1.7.2",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.10.3",
