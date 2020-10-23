@@ -1,12 +1,12 @@
 {
   "name": "@ui/link",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/index.tsx",
   "license": "MIT",
   "dependencies": {
     "@emotion/styled": "^10.0.27",
     "@ui/text": "0.1.0",
-    "@ui/theme": "0.1.0",
+    "@ui/theme": "0.2.0",
     "next": "^9.5.3",
     "react": "16.13.1",
     "styled-system": "^5.1.5",

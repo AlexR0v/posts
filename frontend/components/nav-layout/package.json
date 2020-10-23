@@ -1,14 +1,14 @@
 {
   "name": "@components/nav-layout",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/index.tsx",
   "license": "MIT",
   "dependencies": {
-    "@ui/layout": "0.0.0",
-    "@ui/link": "0.1.0",
+    "@ui/layout": "0.1.0",
+    "@ui/link": "0.2.0",
     "@ui/text": "0.1.0",
+    "next": "^9.5.3",
     "react": "^16.13.1",
-    "react-intl": "^5.8.6",
-    "next": "^9.5.3"
+    "react-intl": "^5.8.6"
   }
 }
