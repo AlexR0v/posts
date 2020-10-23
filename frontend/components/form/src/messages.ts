@@ -3,15 +3,6 @@ import { defineMessages } from 'react-intl'
 import { name as scope }  from '../package.json'
 
 export default defineMessages({
-  title: {
-    id: `${scope}.title`,
-    defaultMessage: 'Регистрация',
-  },
-
-  description: {
-    id: `${scope}.description`,
-    defaultMessage: 'Для входа в чат, вам нужно зарегистрироваться',
-  },
   email: {
     id: `${scope}.email`,
     defaultMessage: 'E-mail',
@@ -32,21 +23,13 @@ export default defineMessages({
     id: `${scope}.button`,
     defaultMessage: 'Зарегистрироваться',
   },
+  buttonLogin: {
+    id: `${scope}.buttonLogin`,
+    defaultMessage: 'Войти',
+  },
   linkAuth: {
     id: `${scope}.linkAuth`,
     defaultMessage: 'Войти в аккаунт',
-  },
-  linkHome: {
-    id: `${scope}.linkHome`,
-    defaultMessage: 'На Главную',
-  },
-  successTitle: {
-    id: `${scope}.successTitle`,
-    defaultMessage: 'Подтвердите свою почту',
-  },
-  successDescr: {
-    id: `${scope}.successDescr`,
-    defaultMessage: 'На вашу почту отправлено письмо с сылкой на подтверждение аккаунта',
   },
   success: {
     id: `${scope}.success`,
@@ -68,8 +51,24 @@ export default defineMessages({
     id: `${scope}.validEmail`,
     defaultMessage: 'Е-mail верный!',
   },
+  validName: {
+    id: `${scope}.validName`,
+    defaultMessage: 'Имя не верное!',
+  },
   validPassword: {
     id: `${scope}.validPassword`,
     defaultMessage: 'Пароли совпадают!',
+  },
+  validPasswordTrue: {
+    id: `${scope}.validPassword`,
+    defaultMessage: 'Пароли совпадают!',
+  },
+  passwordErrorUp: {
+    id: `${scope}.passwordErrorUp`,
+    defaultMessage: 'Пароль должен содержать латнские буквы в нижнем регистре!',
+  },
+  passwordErrorDown: {
+    id: `${scope}.passwordErrorDown`,
+    defaultMessage: 'Пароль должен содержать латнские буквы в верхнем регистре!',
   },
 })

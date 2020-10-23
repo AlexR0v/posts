@@ -5,6 +5,6 @@ import { name as scope }  from '../package.json'
 export default defineMessages({
   title: {
     id: `${scope}.title`,
-    defaultMessage: 'Войти',
+    defaultMessage: 'Зарегистрироваться',
   },
 })

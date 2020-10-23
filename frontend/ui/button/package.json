@@ -4,6 +4,8 @@
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@emotion/styled": "^10.0.27"
+    "@emotion/styled": "^10.0.27",
+    "styled-system": "5.1.5",
+    "@ui/theme": "0.1.0"
   }
 }

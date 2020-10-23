@@ -1,23 +1,16 @@
-import * as React                            from 'react'
-import { useEffect, useState }               from 'react'
-import { injectIntl }                        from 'react-intl'
+import * as React                  from 'react'
+import { useEffect, useState }     from 'react'
+import { injectIntl }              from 'react-intl'
 
-import { Button }                            from '@ui/button'
-import { EmailIcon, NameIcon, PasswordIcon } from '@ui/icons'
-import { Input }                             from '@ui/input'
-import { Box, Column, Layout }               from '@ui/layout'
-import { Text }                              from '@ui/text'
-import { theme }                             from '@ui/theme'
+import { Button }                  from '@ui/button'
+import { Input }                   from '@ui/input'
+import { Box, Column, Layout }     from '@ui/layout'
+import { Text }                    from '@ui/text'
 
-import messages                              from './messages'
+import messages                    from './messages'
+import { useStateCallbackWrapper } from './utils'
 
-const useStateCallbackWrapper = (initialValue, callBack) => {
-  const [state, setState] = useState(initialValue)
-  useEffect(() => callBack(state), [state])
-  return [state, setState]
-}
-
-const Form = ({ intl, isSuccess }) => {
+const Form = ({ intl, path }) => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [success, setSuccess] = useState('')
@@ -36,7 +29,7 @@ const Form = ({ intl, isSuccess }) => {
   const [isValidPass, setIsValidPass] = useStateCallbackWrapper(false, () => {
     if (isValidPass) {
       setIsSubmit(true)
-      setSuccess('Подходящий пароль!')
+      setSuccess(intl.formatMessage(messages.validPasswordTrue))
     }
   })
   const [isValidName, setIsValidName] = useStateCallbackWrapper(false, () => {
@@ -52,17 +45,26 @@ const Form = ({ intl, isSuccess }) => {
     setRePassword('')
     setEmail('')
 
-    if (name && password && email && isValidName && isValidPass && isValidEmail && isPassword) {
-      setSuccess(`${intl.formatMessage(messages.success)}`)
-      setIsSubmit(true)
-      isSuccess(true)
-      alert(`Имя: ${name}, пароль: ${password}, email: ${email}`) // eslint-disable-line
+    if (path === '/login') {
+      if (name && password && isValidName && isValidPass) {
+        setSuccess(`${intl.formatMessage(messages.success)}`)
+        setIsSubmit(true)
+        alert(`Имя: ${name}, пароль: ${password}`)
+      } else {
+        setSuccess(`${intl.formatMessage(messages.declined)}`)
+      }
     } else {
-      setSuccess(`${intl.formatMessage(messages.declined)}`)
+      if (name && password && email && isValidName && isValidPass && isValidEmail && isPassword) {
+        setSuccess(`${intl.formatMessage(messages.success)}`)
+        setIsSubmit(true)
+        alert(`Имя: ${name}, пароль: ${password}, email: ${email}`)
+      } else {
+        setSuccess(`${intl.formatMessage(messages.declined)}`)
+      }
     }
   }
 
-  const handleFormChange = event => {
+  const handleFormChange = (event) => {
     if (event.target.name === 'password') {
       setPassword(event.target.value)
 
@@ -76,10 +78,10 @@ const Form = ({ intl, isSuccess }) => {
         setSuccess('Пароль слишком короткий!')
       }
       if (!/(?=.*[a-z])/.test(event.target.value) && !/(?=.*[A-Z])/.test(event.target.value)) {
-        setSuccess('Пароль должен содержать латнские буквы в нижнем регистре!')
+        setSuccess(intl.formatMessage(messages.passwordErrorUp))
       }
       if (!/(?=.*[A-Z])/.test(event.target.value)) {
-        setSuccess('Пароль должен содержать латнские буквы в верхнем регистре!')
+        setSuccess(intl.formatMessage(messages.passwordErrorDown))
       }
 
       if (!/(?=.*[!@#$%^&*])/.test(event.target.value)) {
@@ -105,30 +107,32 @@ const Form = ({ intl, isSuccess }) => {
           event.target.value
         )
       ) {
-        setSuccess('E-mail не валидный!')
+        setSuccess(intl.formatMessage(messages.unValidEmail))
       }
       setEmail(event.target.value)
     }
     if (event.target.name === 'name') {
       setIsValidName(/(^[A-Z]{1}[a-z]{1,14})|(^[А-Я]{1}[а-я]{1,14})/.test(event.target.value))
       if (!/(^[A-Z]{1}[a-z]{1,14})|(^[А-Я]{1}[а-я]{1,14})/.test(event.target.value)) {
-        setSuccess('Имя не подходит!')
+        setSuccess(intl.formatMessage(messages.validName))
       }
       setName(event.target.value)
     }
   }
 
   useEffect(() => {
-    if (password === rePassword) {
-      setIsPassword(true)
-      setSuccessPass('')
-    } else {
-      setSuccessPass('Пароли не совпадают!')
-      setIsPassword(false)
+    if (path === '/register') {
+      if (password === rePassword) {
+        setIsPassword(true)
+        setSuccessPass('')
+      } else {
+        setSuccessPass('Пароли не совпадают!')
+        setIsPassword(false)
+      }
     }
   }, [password, rePassword, isValidPass, name, email, isValidEmail])
 
-  const handleKeyPress = event => {
+  const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
       handleForm()
     }
@@ -146,37 +150,29 @@ const Form = ({ intl, isSuccess }) => {
   return (
     <Box width={340}>
       <Column onKeyPress={handleKeyPress}>
-        <Text
-          fontSize={theme.fontSize.xs}
-          color={isSubmit ? theme.colors.lightBlue : theme.colors.error}
-          fontFamily={theme.fontFamily.text}
-        >
+        <Text fontSize='default' color={isSubmit ? 'blue' : 'red'}>
           {success}
         </Text>
-        <Text
-          fontSize={theme.fontSize.xs}
-          color={isSubmit ? theme.colors.lightBlue : theme.colors.error}
-          fontFamily={theme.fontFamily.text}
-        >
+        <Text fontSize='default' color={isSubmit ? 'blue' : 'red'}>
           {successPass}
         </Text>
-        <Input
-          type='email'
-          name='email'
-          value={email}
-          onChange={handleFormChange}
-          backgroundImage={`url(${EmailIcon})`}
-          backgroundSize='8% 62%'
-          backgroundPosition='5px center'
-          placeholder={intl.formatMessage(messages.email)}
-        />
-        <Layout flexBasis={20} />
+        {path === '/login' ? null : (
+          <>
+            <Input
+              type='email'
+              name='email'
+              value={email}
+              onChange={handleFormChange}
+              placeholder={intl.formatMessage(messages.email)}
+            />
+            <Layout flexBasis={20} />
+          </>
+        )}
         <Input
           type='text'
           value={name}
           name='name'
           onChange={handleFormChange}
-          backgroundImage={`url(${NameIcon})`}
           placeholder={intl.formatMessage(messages.name)}
         />
         <Layout flexBasis={20} />
@@ -185,30 +181,25 @@ const Form = ({ intl, isSuccess }) => {
           name='password'
           value={password}
           onChange={handleFormChange}
-          backgroundImage={`url(${PasswordIcon})`}
-          backgroundSize='8% 62%'
-          backgroundPosition='5px center'
           placeholder={intl.formatMessage(messages.password)}
         />
         <Layout flexBasis={20} />
-        <Input
-          type='password'
-          name='rePassword'
-          value={rePassword}
-          onChange={handleFormChange}
-          backgroundImage={`url(${PasswordIcon})`}
-          backgroundSize='8% 62%'
-          backgroundPosition='5px center'
-          placeholder={intl.formatMessage(messages.passwordRepeat)}
-        />
-        <Layout flexBasis={54} />
-        <Button onClick={handleForm}>
-          <Text
-            color={theme.colors.white}
-            fontSize={theme.fontSize.xs}
-            fontFamily={theme.fontFamily.text}
-          >
-            {intl.formatMessage(messages.button)}
+        {path === '/login' ? null : (
+          <Input
+            type='password'
+            name='rePassword'
+            value={rePassword}
+            onChange={handleFormChange}
+            placeholder={intl.formatMessage(messages.passwordRepeat)}
+          />
+        )}
+
+        <Layout flexBasis={16} />
+        <Button shadow={true} height={50} borderRadius='medium' bg='blue' onClick={handleForm}>
+          <Text color='white' fontSize='default'>
+            {path === '/login'
+              ? intl.formatMessage(messages.buttonLogin)
+              : intl.formatMessage(messages.button)}
           </Text>
         </Button>
       </Column>
