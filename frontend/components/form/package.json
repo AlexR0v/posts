@@ -1,14 +1,14 @@
 {
   "name": "@components/form",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "react": "16.13.1",
-    "react-intl": "^5.0.2",
-    "@ui/layout": "0.0.0",
-    "@ui/link": "0.1.0",
+    "@ui/input": "0.1.0",
+    "@ui/layout": "0.1.0",
+    "@ui/link": "0.2.0",
     "@ui/text": "0.1.0",
-    "@ui/input": "0.0.0"
+    "react": "16.13.1",
+    "react-intl": "^5.0.2"
   }
 }
