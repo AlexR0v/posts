@@ -37,7 +37,7 @@ const IndexPage = () => {
             flexDirection={['column', 'row', 'row']}
           >
             <Layout flexBasis={[0, 0, 50]} />
-            {postsData.map(post => {
+            {postsData.map((post) => {
               return (
                 <React.Fragment key={post.id}>
                   <PostCard post={post} />

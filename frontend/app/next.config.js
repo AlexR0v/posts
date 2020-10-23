@@ -3,7 +3,7 @@ const withImages = require('next-images')
 
 module.exports = withImages(
   withFonts({
-    webpack: config => {
+    webpack: (config) => {
       config.module.rules.push(
         {
           test: /\.(ts|js)x?$/,
@@ -44,7 +44,7 @@ module.exports = withImages(
       return config
     },
     /* eslint-disable */
-    webpackDevMiddleware: config => {
+    webpackDevMiddleware: (config) => {
       config.watchOptions = {
         poll: 1000,
         aggregateTimeout: 300,

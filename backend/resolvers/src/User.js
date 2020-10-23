@@ -5,7 +5,7 @@ const { validateRegisterInput, validateLoginInput } = require('@merng/utils')
 const { SECRET_KEY } = require('@merng/app/config')
 const { UserInputError } = require('apollo-server')
 
-const generateToken = user => {
+const generateToken = (user) => {
   return jwt.sign(
     {
       id: user.id,

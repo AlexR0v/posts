@@ -13,7 +13,6 @@ import messages                              from './messages'
 
 const PostCard = ({ post }) => {
   const intl = useIntl()
-  console.log(intl.locale)
   const [isHoverLike, setIsHoverLike] = useState(false)
   const [isHoverComment, setIsHoverComment] = useState(false)
   return (
