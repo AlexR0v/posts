@@ -22,4 +22,4 @@ mongoose
   .then(({ url }) => {
     console.log(`Server running at ${url}`)
   })
-  .catch(err => console.log(err))
+  .catch((err) => console.log(err))
