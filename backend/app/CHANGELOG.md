@@ -5,14 +5,9 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## [0.1.1](https://github.com/AlexR0v/posts/compare/@merng/app@0.1.0...@merng/app@0.1.1) (2020-10-23)
 
-
 ### Reverts
 
-* wrong commit ([86ddd08](https://github.com/AlexR0v/posts/commit/86ddd085c1af6172d5ff649a96893cf8c238e32a))
-
-
-
-
+- wrong commit ([86ddd08](https://github.com/AlexR0v/posts/commit/86ddd085c1af6172d5ff649a96893cf8c238e32a))
 
 # [0.1.0](https://github.com/AlexR0v/posts/compare/@merng/app@0.0.1...@merng/app@0.1.0) (2020-10-13)
 

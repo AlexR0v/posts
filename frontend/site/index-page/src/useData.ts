@@ -2,7 +2,7 @@ import gql                     from 'graphql-tag'
 import { useApolloClient }     from '@apollo/react-hooks'
 import { useEffect, useState } from 'react'
 
-const query = gql`
+export const query: any = gql`
   query GetPosts {
     getPosts {
       id

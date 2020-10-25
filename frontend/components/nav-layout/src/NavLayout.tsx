@@ -1,21 +1,27 @@
-import React                from 'react'
-import { useRouter }        from 'next/router'
-import { injectIntl }       from 'react-intl'
+import React, { useContext } from 'react'
+import { useRouter }         from 'next/router'
+import { injectIntl }        from 'react-intl'
 
-import { Box, Column, Row } from '@ui/layout'
-import { NextLink }         from '@ui/link'
-import { Text }             from '@ui/text'
+import { AuthContext }       from '@store/context'
+import { Button }            from '@ui/button'
+import { Box, Column, Row }  from '@ui/layout'
+import { NextLink }          from '@ui/link'
+import { Text }              from '@ui/text'
 
-import messages             from './messages'
+import messages              from './messages'
 
 const NavLayout = ({ children, intl }) => {
+  const { user, logout } = useContext(AuthContext)
   const router = useRouter()
+  if (user && router.pathname === '/login') {
+    router.push('/')
+  }
   return (
     <>
       <Box bg='blue'>
         <Column as='header' alignItems='center'>
           <Box height={[40, 50, 70]} maxWidth={[375, 768, 1440]} width='100%'>
-            <Row as='nav' alignItems='center' justifyContent='space-evenly'>
+            <Row alignItems='center' justifyContent='space-evenly'>
               <NextLink
                 underline
                 color='white'
@@ -32,37 +38,67 @@ const NavLayout = ({ children, intl }) => {
                 </Text>
               </NextLink>
 
-              <NextLink
-                underline
-                color='white'
-                href='/login'
-                active={router.pathname === '/login'}
-                activeColor='activeLink'
-              >
-                <Text
-                  textTransform='uppercase'
+              {user ? (
+                <NextLink
+                  underline
                   color='white'
-                  fontSize={['semiMedium', 'default', 'xlMedium']}
+                  href='/'
+                  active={router.pathname === '/login'}
+                  activeColor='activeLink'
                 >
-                  {intl.formatMessage(messages.loginLink)}
-                </Text>
-              </NextLink>
+                  <Text
+                    textTransform='uppercase'
+                    color='white'
+                    fontSize={['semiMedium', 'default', 'xlMedium']}
+                  >
+                    {user.username}
+                  </Text>
+                </NextLink>
+              ) : (
+                <NextLink
+                  underline
+                  color='white'
+                  href='/login'
+                  active={router.pathname === '/login'}
+                  activeColor='activeLink'
+                >
+                  <Text
+                    textTransform='uppercase'
+                    color='white'
+                    fontSize={['semiMedium', 'default', 'xlMedium']}
+                  >
+                    {intl.formatMessage(messages.loginLink)}
+                  </Text>
+                </NextLink>
+              )}
 
-              <NextLink
-                underline
-                color='white'
-                href='/register'
-                active={router.pathname === '/register'}
-                activeColor='activeLink'
-              >
-                <Text
-                  textTransform='uppercase'
+              {user ? (
+                <Button onClick={logout}>
+                  <Text
+                    textTransform='uppercase'
+                    color='white'
+                    fontSize={['semiMedium', 'default', 'xlMedium']}
+                  >
+                    {intl.formatMessage(messages.logout)}
+                  </Text>
+                </Button>
+              ) : (
+                <NextLink
+                  underline
                   color='white'
-                  fontSize={['semiMedium', 'default', 'xlMedium']}
+                  href='/register'
+                  active={router.pathname === '/register'}
+                  activeColor='activeLink'
                 >
-                  {intl.formatMessage(messages.registerLink)}
-                </Text>
-              </NextLink>
+                  <Text
+                    textTransform='uppercase'
+                    color='white'
+                    fontSize={['semiMedium', 'default', 'xlMedium']}
+                  >
+                    {intl.formatMessage(messages.registerLink)}
+                  </Text>
+                </NextLink>
+              )}
             </Row>
           </Box>
         </Column>

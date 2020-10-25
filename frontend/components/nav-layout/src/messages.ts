@@ -15,4 +15,8 @@ export default defineMessages({
     id: `${scope}.registerLink`,
     defaultMessage: 'Register',
   },
+  logout: {
+    id: `${scope}.logout`,
+    defaultMessage: 'Logout',
+  },
 })

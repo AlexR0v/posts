@@ -1,16 +1,21 @@
-import * as React                  from 'react'
-import { useEffect, useState }     from 'react'
-import { injectIntl }              from 'react-intl'
+import * as React                          from 'react'
+import { useContext, useEffect, useState } from 'react'
+import { injectIntl }                      from 'react-intl'
 
-import { Button }                  from '@ui/button'
-import { Input }                   from '@ui/input'
-import { Box, Column, Layout }     from '@ui/layout'
-import { Text }                    from '@ui/text'
+import { AuthContext }                     from '@store/context'
+import { Button }                          from '@ui/button'
+import { Input }                           from '@ui/input'
+import { Box, Column, Layout }             from '@ui/layout'
+import { Text }                            from '@ui/text'
 
-import messages                    from './messages'
-import { useStateCallbackWrapper } from './utils'
+import messages                            from './messages'
+import { useData }                         from './useData'
+import { useStateCallbackWrapper }         from './utils'
 
 const Form = ({ intl, path }) => {
+  const { user } = useContext(AuthContext)
+
+  const [body, setBody] = useState('')
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [success, setSuccess] = useState('')
@@ -39,32 +44,11 @@ const Form = ({ intl, path }) => {
     }
   })
 
-  const handleForm = () => {
-    setName('')
-    setPassword('')
-    setRePassword('')
-    setEmail('')
-
-    if (path === '/login') {
-      if (name && password && isValidName && isValidPass) {
-        setSuccess(`${intl.formatMessage(messages.success)}`)
-        setIsSubmit(true)
-        alert(`Имя: ${name}, пароль: ${password}`)
-      } else {
-        setSuccess(`${intl.formatMessage(messages.declined)}`)
-      }
-    } else {
-      if (name && password && email && isValidName && isValidPass && isValidEmail && isPassword) {
-        setSuccess(`${intl.formatMessage(messages.success)}`)
-        setIsSubmit(true)
-        alert(`Имя: ${name}, пароль: ${password}, email: ${email}`)
-      } else {
-        setSuccess(`${intl.formatMessage(messages.declined)}`)
-      }
-    }
-  }
-
   const handleFormChange = (event) => {
+    if (event.target.name === 'body') {
+      setBody(event.target.value)
+    }
+
     if (event.target.name === 'password') {
       setPassword(event.target.value)
 
@@ -120,6 +104,42 @@ const Form = ({ intl, path }) => {
     }
   }
 
+  const { addUser, loginUser, setErrors, errors, addPost, errorsPost, setErrorsPost } = useData({
+    name,
+    email,
+    password,
+    rePassword,
+    body,
+  })
+
+  const handleForm = () => {
+    setName('')
+    setPassword('')
+    setRePassword('')
+    setEmail('')
+    setBody('')
+
+    if (path === '/login') {
+      if (name && password && isValidName && isValidPass) {
+        setIsSubmit(true)
+        loginUser()
+      } else {
+        setSuccess(`${intl.formatMessage(messages.declined)}`)
+      }
+    }
+    if (path === '/register') {
+      if (name && password && email && isValidName && isValidPass && isValidEmail && isPassword) {
+        setIsSubmit(true)
+        addUser()
+      } else {
+        setSuccess(`${intl.formatMessage(messages.declined)}`)
+      }
+    }
+    if (path === '/') {
+      addPost()
+    }
+  }
+
   useEffect(() => {
     if (path === '/register') {
       if (password === rePassword) {
@@ -143,9 +163,17 @@ const Form = ({ intl, path }) => {
       setSuccess('')
       setSuccessPass('')
       setIsSubmit(false)
+      setErrorsPost('')
     }, 3000)
     return () => clearTimeout(timeOut)
-  }, [success, setSuccess, setSuccessPass])
+  }, [success, setSuccess, setSuccessPass, errorsPost])
+
+  useEffect(() => {
+    const timeOut = setTimeout(() => {
+      setErrors({})
+    }, 3000)
+    return () => clearTimeout(timeOut)
+  }, [errors, setErrors])
 
   return (
     <Box width={340}>
@@ -153,10 +181,20 @@ const Form = ({ intl, path }) => {
         <Text fontSize='default' color={isSubmit ? 'blue' : 'red'}>
           {success}
         </Text>
+        {Object.values(errors).map((value) => (
+          <Text key={value} fontSize='default' color='red'>
+            {value}
+          </Text>
+        ))}
+        {user && (
+          <Text fontSize='default' color='red'>
+            {errorsPost}
+          </Text>
+        )}
         <Text fontSize='default' color={isSubmit ? 'blue' : 'red'}>
           {successPass}
         </Text>
-        {path === '/login' ? null : (
+        {path === '/login' || user ? null : (
           <>
             <Input
               type='email'
@@ -168,23 +206,36 @@ const Form = ({ intl, path }) => {
             <Layout flexBasis={20} />
           </>
         )}
-        <Input
-          type='text'
-          value={name}
-          name='name'
-          onChange={handleFormChange}
-          placeholder={intl.formatMessage(messages.name)}
-        />
+        {!user && (
+          <Input
+            type='text'
+            value={name}
+            name='name'
+            onChange={handleFormChange}
+            placeholder={intl.formatMessage(messages.name)}
+          />
+        )}
+        {user && (
+          <Input
+            type='text'
+            value={body}
+            name='body'
+            onChange={handleFormChange}
+            placeholder={intl.formatMessage(messages.body)}
+          />
+        )}
         <Layout flexBasis={20} />
-        <Input
-          type='password'
-          name='password'
-          value={password}
-          onChange={handleFormChange}
-          placeholder={intl.formatMessage(messages.password)}
-        />
+        {!user && (
+          <Input
+            type='password'
+            name='password'
+            value={password}
+            onChange={handleFormChange}
+            placeholder={intl.formatMessage(messages.password)}
+          />
+        )}
         <Layout flexBasis={20} />
-        {path === '/login' ? null : (
+        {path === '/login' || user ? null : (
           <Input
             type='password'
             name='rePassword'
@@ -199,6 +250,8 @@ const Form = ({ intl, path }) => {
           <Text color='white' fontSize='default'>
             {path === '/login'
               ? intl.formatMessage(messages.buttonLogin)
+              : user
+              ? intl.formatMessage(messages.buttonAdd)
               : intl.formatMessage(messages.button)}
           </Text>
         </Button>
