@@ -1,12 +1,12 @@
 {
   "name": "@merng/resolvers",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "main": "src/index.js",
   "license": "MIT",
   "private": true,
   "dependencies": {
     "@merng/models": "^0.0.1",
-    "@merng/utils": "0.0.2",
+    "@merng/utils": "0.1.0",
     "apollo-server": "^2.18.2",
     "bcrypt": "^5.0.0",
     "jsonwebtoken": "^8.5.1"

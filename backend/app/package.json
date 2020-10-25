@@ -1,6 +1,6 @@
 {
   "name": "@merng/app",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "main": "src/index.js",
   "license": "MIT",
   "private": true,
@@ -9,7 +9,7 @@
     "dev": "nodemon --watch src src/index.js"
   },
   "dependencies": {
-    "@merng/resolvers": "0.0.2",
+    "@merng/resolvers": "0.1.0",
     "apollo-server": "^2.18.2",
     "graphql": "^15.3.0",
     "mongoose": "^5.10.8"

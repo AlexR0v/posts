@@ -1,19 +1,19 @@
 {
   "name": "@components/form",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "@ui/input": "0.1.0",
-    "@ui/layout": "0.1.0",
-    "@ui/link": "0.2.0",
-    "@ui/text": "0.1.0",
-    "react": "16.13.1",
-    "react-intl": "^5.0.2",
-    "graphql-tag": "^2.11.0",
     "@apollo/react-hooks": "^4.0.0",
+    "@site/index-page": "0.3.0",
+    "@store/context": "0.1.0",
+    "@ui/input": "0.2.0",
+    "@ui/layout": "0.2.0",
+    "@ui/link": "0.3.0",
+    "@ui/text": "0.2.0",
+    "graphql-tag": "^2.11.0",
     "next": "9.5.3",
-    "@store/context": "0.0.0",
-    "@site/index-page": "0.2.0"
+    "react": "16.13.1",
+    "react-intl": "^5.0.2"
   }
 }
