@@ -5,7 +5,6 @@ import { useIntl }                           from 'react-intl'
 import { Button }                            from '@ui/button'
 import { CommentsIcon, LikesIcon, UserIcon } from '@ui/icons'
 import { Box, Column, Layout, Row }          from '@ui/layout'
-import { NextLink }                          from '@ui/link'
 import { Text }                              from '@ui/text'
 import { theme }                             from '@ui/theme'
 
@@ -16,8 +15,8 @@ const PostCard = ({ post }) => {
   const [isHoverLike, setIsHoverLike] = useState(false)
   const [isHoverComment, setIsHoverComment] = useState(false)
   return (
-    <NextLink href='/posts'>
-      <Box width={335} minHeight={195} p='semiLarge' borderRadius='small' border='gray'>
+    <>
+      <Box width={335} minHeight={195} m='large' p='semiLarge' borderRadius='small' border='gray'>
         <Column alignItems='center'>
           <Row justifyContent='space-between' alignItems='center'>
             <Text fontSize='default' fontWeight='semiBold'>
@@ -39,7 +38,7 @@ const PostCard = ({ post }) => {
           <Box width='100%' height={1} border='gray' />
           <Layout flexBasis={5} />
           <Row justifyContent='space-between' alignItems='center'>
-            <NextLink>
+            <Button>
               <Box
                 position='relative'
                 alignItems='center'
@@ -70,7 +69,7 @@ const PostCard = ({ post }) => {
                   </Box>
                 ) : null}
               </Box>
-            </NextLink>
+            </Button>
             <Text color='gray' fontWeight='tiny' fontSize='semiMedium' lineHeight='small'>
               {moment(post.createdAt)
                 .locale(intl.locale)
@@ -109,7 +108,7 @@ const PostCard = ({ post }) => {
           </Row>
         </Column>
       </Box>
-    </NextLink>
+    </>
   )
 }
 

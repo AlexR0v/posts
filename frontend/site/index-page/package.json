@@ -11,6 +11,8 @@
     "@ui/layout": "0.1.0",
     "@ui/loader": "0.1.0",
     "@ui/text": "0.1.0",
+    "@components/form": "0.1.0",
+    "@store/context": "0.0.0",
     "graphql-tag": "^2.11.0",
     "react": "16.13.1",
     "react-intl": "^5.0.2"

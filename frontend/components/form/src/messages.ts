@@ -7,6 +7,10 @@ export default defineMessages({
     id: `${scope}.email`,
     defaultMessage: 'E-mail',
   },
+  body: {
+    id: `${scope}.body`,
+    defaultMessage: 'Текст поста...',
+  },
   name: {
     id: `${scope}.name`,
     defaultMessage: 'Ваше имя',
@@ -26,6 +30,10 @@ export default defineMessages({
   buttonLogin: {
     id: `${scope}.buttonLogin`,
     defaultMessage: 'Войти',
+  },
+  buttonAdd: {
+    id: `${scope}.buttonAdd`,
+    defaultMessage: 'Добавить',
   },
   linkAuth: {
     id: `${scope}.linkAuth`,
