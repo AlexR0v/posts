@@ -1,11 +1,11 @@
 {
   "name": "@store/context",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "main": "src/index.ts",
   "license": "MIT",
   "dependencies": {
-    "react": "16.13.1",
+    "cookie-storage": "^6.1.0",
     "jwt-decode": "^3.0.0",
-    "cookie-storage": "^6.1.0"
+    "react": "16.13.1"
   }
 }
